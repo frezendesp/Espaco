@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação Estelar 3D</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="sidebar">
+            <h2>Controles</h2>
+
+            <div class="control-group">
+                <h3>Criar Estrela</h3>
+                <label for="star-x">X:</label><input type="number" id="star-x" value="0"><br>
+                <label for="star-y">Y:</label><input type="number" id="star-y" value="0"><br>
+                <label for="star-z">Z:</label><input type="number" id="star-z" value="0"><br>
+                <label for="star-mass">Massa:</label><input type="number" id="star-mass" value="1000" min="1"><br>
+                <button id="create-star-btn">Criar Estrela</button>
+            </div>
+
+            <div class="control-group">
+                <h3>Selecionar Objeto</h3>
+                <select id="object-select">
+                    <option value="">-- Selecione --</option>
+                </select>
+            </div>
+
+            <div class="control-group" id="selected-object-controls" style="display: none;">
+                <h3>Configurar Objeto Selecionado</h3>
+                <p>Objeto: <span id="selected-object-name"></span></p>
+                <label for="object-mass">Massa:</label><input type="number" id="object-mass" min="0.1"><button id="update-mass-btn">Atualizar</button><br>
+                <label for="object-velocity-x">Vel. X:</label><input type="number" id="object-velocity-x"><br>
+                <label for="object-velocity-y">Vel. Y:</label><input type="number" id="object-velocity-y"><br>
+                <label for="object-velocity-z">Vel. Z:</label><input type="number" id="object-velocity-z"><br>
+                <button id="update-velocity-btn">Atualizar Velocidade</button>
+            </div>
+
+            <div class="control-group">
+                <h3>Adicionar Planetas (à Estrela Selecionada)</h3>
+                <label for="num-planets">Qtd:</label><input type="number" id="num-planets" value="5" min="1"><br>
+                 <label for="planet-mass">Massa Padrão:</label><input type="number" id="planet-mass" value="1" min="0.1"><br>
+                 <label for="planet-orbit-radius">Raio Órbita:</label><input type="number" id="planet-orbit-radius" value="50" min="10"><br>
+                <button id="add-planets-btn">Adicionar Planetas</button>
+            </div>
+        </div>
+
+        <div id="canvas-container">
+            </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
