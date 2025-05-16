@@ -2,10 +2,20 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial=1.0">
     <title>Simulação Estelar 3D</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    <!-- Import Map deve vir ANTES dos scripts type="module" -->
+	<script type="importmap">
+    {
+        "imports": {
+            "three": "./node_modules/three/build/three.module.js",
+            "three/examples/jsm/controls/OrbitControls": "./node_modules/three/examples/jsm/controls/OrbitControls.js"
+        }
+    }
+	</script>
+	
+    </head>
 <body>
     <div class="container">
         <div id="sidebar">
@@ -44,13 +54,21 @@
                  <label for="planet-orbit-radius">Raio Órbita:</label><input type="number" id="planet-orbit-radius" value="50" min="10"><br>
                 <button id="add-planets-btn">Adicionar Planetas</button>
             </div>
+
+            <div class="control-group">
+                <h3>Controle de Câmera</h3>
+                <button id="view-top-btn">Vista Superior</button><br>
+                <button id="view-side-btn">Vista Lateral</button><br>
+                <button id="view-angled-btn">Vista Inclinada</button>
+            </div>
+
         </div>
 
         <div id="canvas-container">
             </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="main.js"></script>
+
 </body>
 </html>
