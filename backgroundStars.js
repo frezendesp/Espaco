@@ -1,19 +1,39 @@
-// Importar o THREE
 import * as THREE from 'three';
 
-// Função para criar as estrelas de fundo e adicioná-las à cena
-export function createBackgroundStars(scene) {
-    // TODO: Implementar lógica para gerar e adicionar estrelas/partículas
-    console.log("TODO: Implementar criação de estrelas de fundo.");
-    // Exemplo: criar uma geometria com muitos pontos, um material, e adicionar à cena
-    // const geometry = new THREE.BufferGeometry();
-    // const material = new THREE.PointsMaterial({ color: 0xffffff, size: 1 });
-    // const points = new THREE.Points(geometry, material);
-    // scene.add(points);
+export function createBackgroundStars(scene, { count = 1500, radius = 800 } = {}) {
+  const positions = new Float32Array(count * 3);
+
+  for (let i = 0; i < count; i++) {
+    const phi = Math.acos(2 * Math.random() - 1);
+    const theta = Math.random() * Math.PI * 2;
+    const distance = radius * Math.cbrt(Math.random());
+
+    const index = i * 3;
+    positions[index] = distance * Math.sin(phi) * Math.cos(theta);
+    positions[index + 1] = distance * Math.cos(phi);
+    positions[index + 2] = distance * Math.sin(phi) * Math.sin(theta);
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  const material = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 1.4,
+    sizeAttenuation: true,
+    transparent: true,
+    opacity: 0.85
+  });
+
+  const stars = new THREE.Points(geometry, material);
+  stars.name = 'background-stars';
+  scene.add(stars);
+  return stars;
 }
 
-// Função para atualizar o estado das estrelas de fundo (se elas oscilarem ou se moverem)
-export function updateBackgroundStars(stars) {
-    // TODO: Implementar lógica de oscilação ou movimento se necessário
-    // Exemplo: stars.geometry.attributes.size.needsUpdate = true;
+export function updateBackgroundStars(stars, dt) {
+  if (!stars) {
+    return;
+  }
+  stars.rotation.y += 0.02 * dt;
 }
