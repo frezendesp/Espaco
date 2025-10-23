@@ -72,6 +72,17 @@ body {
      border: 1px solid #555;
 }
 
+#time-scale {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#time-scale-value {
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
 
 #canvas-container {
     flex-grow: 1; /* Ocupa todo o espaço restante */
